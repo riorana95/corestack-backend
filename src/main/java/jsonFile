@@ -1,0 +1,689 @@
+{
+    "Bosch": {
+    "role": "Full Stack (React + TypeScript + Java Spring Boot)",
+    "questionEntities": [
+      {
+        "questionEntity": "Explain your current project",
+        "description": "I worked on Group Medical Coverage and KYC systems where the UI was configuration-driven. The frontend dynamically rendered forms and product rules based on API responses. My responsibilities included building reusable Angular components, integrating APIs, optimizing performance using RxJS, and collaborating with backend teams for requirement analysis and debugging.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["project"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "What is backend validation?",
+        "description": "Backend validation ensures that incoming data from the client is validated on the server side before processing. It prevents invalid or malicious data from being stored in the database and ensures data integrity.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["backend"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "Authentication vs Authorization",
+        "description": "Authentication verifies the identity of a user (login with username/password or token). Authorization determines what actions or resources the authenticated user is allowed to access.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["security"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "What is REST API?",
+        "description": "REST API is an architectural style for designing web services that use HTTP methods such as GET, POST, PUT, DELETE to perform operations on resources. It follows principles like stateless communication and resource-based endpoints.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["backend"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "What are React Hooks?",
+        "description": "React Hooks allow functional components to use state and lifecycle features. Common hooks include useState, useEffect, useContext, useRef, etc.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["react"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "Explain useState",
+        "description": "useState is a React hook used to manage component state. It allows functional components to store and update state values which trigger UI re-renders when updated.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["react"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "Explain useEffect",
+        "description": "useEffect is used for handling side effects in React components such as API calls, subscriptions, or DOM updates. It runs after the component renders and can depend on specific variables.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["react"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "How does authentication flow work between frontend and backend?",
+        "description": "Typically the user logs in with credentials, the backend verifies them and returns a JWT token. The frontend stores the token and includes it in request headers for subsequent API calls. The backend verifies the token to allow access to protected resources.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["security"],
+        "difficulty": "intermediate"
+      },
+      {
+        "questionEntity": "Does React batch state updates?",
+        "description": "Yes. React batches multiple state updates together to improve performance and reduce unnecessary re-renders.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["react"],
+        "difficulty": "intermediate"
+      },
+      {
+        "questionEntity": "Filter array by role",
+        "description": "You can filter an array using JavaScript filter method to return only items matching a specific role.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["javascript"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "Benefits of TypeScript",
+        "description": "TypeScript provides static typing, better code maintainability, improved IDE support, and early error detection during development.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["typescript"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "Debouncing vs Throttling",
+        "description": "Debouncing delays execution until the user stops triggering an event. Throttling limits how often a function can execute within a given time interval.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["javascript"],
+        "difficulty": "intermediate"
+      }
+    ]
+  },
+    "Drimco.ai": {
+    "role": "Angular Developer",
+    "questionEntities": [
+      {
+        "questionEntity": "What is Angular architecture and its main building blocks?",
+        "description": "Angular follows a component-based architecture. The main building blocks include Modules, Components, Templates, Services, Dependency Injection, Routing, and RxJS for handling asynchronous operations.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "What are the entry points in Angular? How does Angular start?",
+        "description": "Angular starts from main.ts, which bootstraps the root module or standalone component. Angular then loads the root component and renders it inside index.html.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "What are the data bindings in Angular?",
+        "description": "Angular supports four types of data binding: Interpolation ({{ }}), Property Binding ([value]), Event Binding ((click)), and Two-way Binding ([(ngModel)]).",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "Are you comfortable with RxJS?",
+        "description": "Yes. RxJS is used in Angular to handle asynchronous data streams in Angular. I commonly use operators like map, switchMap, debounceTime, forkJoin, and takeUntil for transforming API responses, handling search APIs, combining multiple API calls, and managing subscriptions.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["rxjs"],
+        "difficulty": "intermediate"
+      },
+      {
+        "questionEntity": "Can you explain some RxJS operators?",
+        "description": "Common operators include map (transform data), filter (filter emitted values), switchMap (cancel previous observable and switch to new one), mergeMap (parallel observable execution), and forkJoin (wait for multiple observables to complete).",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["rxjs"],
+        "difficulty": "intermediate"
+      },
+      {
+        "questionEntity": "Explain switchMap, mergeMap, and forkJoin.",
+        "description": "switchMap cancels the previous observable when a new value is emitted. mergeMap executes multiple observables in parallel. forkJoin runs multiple observables and emits the result once all of them complete.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["rxjs"],
+        "difficulty": "intermediate"
+      },
+      {
+        "questionEntity": "If we have to make multiple API calls in parallel which operator will you use?",
+        "description": "forkJoin is used to execute multiple API calls in parallel and emit the combined result when all observables complete.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["rxjs"],
+        "difficulty": "intermediate"
+      },
+      {
+        "questionEntity": "If a large application has multiple components sharing data how will you manage state?",
+        "description": "For medium applications we can use a shared service with RxJS BehaviorSubject or Subject. For larger applications we can use state management libraries like NgRx.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "intermediate"
+      },
+      {
+        "questionEntity": "Create a search input where typing filters data.",
+        "description": "Use RxJS operators like debounceTime to delay typing events, filter to ignore empty values, and switchMap to cancel previous API requests and fetch latest results.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["rxjs"],
+        "difficulty": "intermediate"
+      },
+      {
+        "questionEntity": "How will you ignore empty search terms?",
+        "description": "Use the filter operator to ignore empty or whitespace values before making the API call.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["rxjs"],
+        "difficulty": "intermediate"
+      },
+      {
+        "questionEntity": "How will you handle errors in RxJS?",
+        "description": "Use the catchError operator in the RxJS pipeline to handle errors and return a fallback observable or error message.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["rxjs"],
+        "difficulty": "intermediate"
+      }
+    ]
+  },
+    "Unknown Company": {
+    "role": "Angular Developer",
+    "questionEntities": [
+      {
+        "questionEntity": "Explain Angular change detection mechanism.",
+        "description": "Angular change detection runs whenever asynchronous events occur such as HTTP requests, user interactions, or timers. Angular uses Zone.js to intercept async operations and then checks the component tree to update the DOM where bindings changed.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "intermediate"
+      },
+      {
+        "questionEntity": "Explain dependency injection in Angular.",
+        "description": "Dependency Injection is a design pattern where Angular automatically provides required dependencies such as services to components through its injector system, improving modularity and testability.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "Explain lazy loading.",
+        "description": "Lazy loading loads feature modules only when the user navigates to a specific route, reducing the initial bundle size and improving application performance.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "intermediate"
+      },
+      {
+        "questionEntity": "What is BehaviorSubject?",
+        "description": "BehaviorSubject is an RxJS subject that stores the latest value and immediately emits that value to new subscribers.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["rxjs"],
+        "difficulty": "intermediate"
+      },
+      {
+        "questionEntity": "What are Angular guards?",
+        "description": "Guards control access to routes in Angular. For example AuthGuard checks if a user is authenticated before allowing navigation to a route.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "intermediate"
+      },
+      {
+        "questionEntity": "How do you improve Angular performance?",
+        "description": "Performance can be improved using techniques such as lazy loading modules, OnPush change detection strategy, trackBy in ngFor, virtual scrolling, and optimized RxJS usage.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "intermediate"
+      },
+      {
+        "questionEntity": "How can unrelated components share data?",
+        "description": "Unrelated components can share data using a shared service with RxJS Subject or BehaviorSubject.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "What is Semantic HTML?",
+        "description": "Semantic HTML uses meaningful tags such as header, nav, section, article, and footer to describe the structure and meaning of the content.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["html"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "Difference between section and div?",
+        "description": "div is a generic container without semantic meaning, while section represents a semantic grouping of related content.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["html"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "LocalStorage vs SessionStorage",
+        "description": "LocalStorage persists data until manually cleared. SessionStorage stores data only for the duration of the browser tab session.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["javascript"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "What is Flexbox?",
+        "description": "Flexbox is a one-dimensional layout system used to align and distribute items along rows or columns.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["css"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "Flexbox vs Grid",
+        "description": "Flexbox is designed for one-dimensional layouts (row or column). CSS Grid is designed for two-dimensional layouts (rows and columns).",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["css"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "Write syntax to call API in Angular.",
+        "description": "Use Angular’s HttpClient service to make API calls and return observables.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "beginner"
+      }
+    ]
+  },
+    "greytHR": {
+    "role": "Angular Developer / Frontend",
+    "questionEntities": [
+      {
+        "questionEntity": "What do you think about AI in development?",
+        "description": "AI helps improve productivity by assisting in code generation, debugging, and faster development, but it cannot replace developers completely because logical thinking, architecture decisions, and understanding business requirements still require human expertise.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["general"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "TypeScript vs JavaScript",
+        "description": "TypeScript is a superset of JavaScript that adds static typing, interfaces, and compile-time error checking, making code more maintainable and scalable compared to JavaScript.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["typescript"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "What are utility types (Pick, Partial)?",
+        "description": "Utility types help transform existing types. Partial makes all properties optional, while Pick selects specific properties from a type.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["typescript"],
+        "difficulty": "intermediate"
+      },
+      {
+        "questionEntity": "any vs unknown vs never",
+        "description": "any disables type checking, unknown is a safer version that requires type checking before use, and never represents values that never occur, such as functions that always throw errors.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["typescript"],
+        "difficulty": "intermediate"
+      },
+      {
+        "questionEntity": "Interface vs Type",
+        "description": "Interface is mainly used to define object structure and can be extended. Type is more flexible and can define unions, primitives, and complex types.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["typescript"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "What is CSS specificity?",
+        "description": "CSS specificity determines which styles are applied when multiple rules target the same element. Priority is Inline > ID > Class > Element.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["css"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "What is CSS inheritance?",
+        "description": "Some CSS properties like color, font, and text properties are inherited from parent elements, while others like margin and padding are not.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["css"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "Write function using setTimeout (async behavior)",
+        "description": "setTimeout is used to execute code after a delay. It is asynchronous and works via the event loop. A Promise can be used to handle delayed execution cleanly.\n\nfunction delayReturn(data, time){\n return new Promise(resolve => {\n  setTimeout(() => {\n   resolve(data);\n  }, time);\n });\n}",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["javascript"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "Explain NgRx",
+        "description": "NgRx is a state management library based on Redux pattern that uses Store, Actions, Reducers, Effects, and Selectors to manage application state in a centralized and predictable way.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "advanced"
+      },
+      {
+        "questionEntity": "Explain RxJS",
+        "description": "RxJS is used in Angular to handle asynchronous data streams using Observables and operators like map, switchMap, debounceTime, forkJoin, and takeUntil.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "intermediate"
+      },
+      {
+        "questionEntity": "Observable vs Promise",
+        "description": "Observable can emit multiple values over time and supports operators and cancellation. Promise resolves once with a single value and cannot be cancelled.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["javascript"],
+        "difficulty": "intermediate"
+      },
+      {
+        "questionEntity": "Angular Architecture",
+        "description": "Angular follows a component-based architecture consisting of Modules, Components, Templates, Services, Dependency Injection, Routing, and RxJS.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "What are Directives?",
+        "description": "Directives are used to modify DOM behavior. Types include Structural (ngIf, ngFor), Attribute (ngClass, ngStyle), and Custom directives.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "What is NgModule?",
+        "description": "NgModule is a decorator that defines an Angular module. It organizes components, directives, pipes, and services using properties like declarations, imports, providers, and bootstrap.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "beginner"
+      }
+    ]
+  },
+
+  "Bounteous X Accolite": {
+    "role": "Angular Developer",
+    "questionEntities": [
+      {
+        "questionEntity": "Explain Hoisting",
+        "description": "Hoisting is JavaScript behavior where variable and function declarations are moved to the top of their scope during compilation. Variables declared with var are initialized as undefined, while let and const are hoisted but remain in the temporal dead zone until initialized.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["javascript"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "What is Closure?",
+        "description": "A closure is when a function remembers variables from its outer scope even after the outer function has finished execution. It is commonly used for data encapsulation and maintaining state.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["javascript"],
+        "difficulty": "intermediate"
+      },
+      {
+        "questionEntity": "How do you copy an object in JavaScript?",
+        "description": "Objects can be copied using spread operator or Object.assign for shallow copy, and JSON.parse(JSON.stringify(obj)) or structuredClone for deep copy depending on the use case.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["javascript"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "What is Prototyping?",
+        "description": "Prototyping is JavaScript’s mechanism for inheritance where objects can inherit properties and methods from other objects through the prototype chain.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["javascript"],
+        "difficulty": "intermediate"
+      },
+      {
+        "questionEntity": "Difference between let, var, and const",
+        "description": "var is function scoped and can be redeclared. let and const are block scoped. const cannot be reassigned. All are hoisted, but let and const remain in the temporal dead zone.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["javascript"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "What is Execution Context?",
+        "description": "Execution Context is the environment where JavaScript code executes. It includes variable environment, scope chain, and the value of this. There are two types: Global Execution Context and Function Execution Context.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["javascript"],
+        "difficulty": "intermediate"
+      },
+      {
+        "questionEntity": "Explain Angular lifecycle hooks",
+        "description": "Angular lifecycle hooks allow us to tap into component lifecycle events. Common hooks include ngOnInit for initialization, ngOnChanges for input changes, ngDoCheck for custom change detection, and ngOnDestroy for cleanup.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "What is ngOnDestroy?",
+        "description": "ngOnDestroy is used for cleanup activities such as unsubscribing from observables, removing event listeners, or clearing timers to avoid memory leaks.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "How do components communicate in Angular?",
+        "description": "Components communicate using @Input for parent-to-child, @Output for child-to-parent, ViewChild for direct access, and shared services with RxJS for unrelated components.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "Authentication vs Authorization",
+        "description": "Authentication verifies who the user is, while authorization determines what the user is allowed to access.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["security"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "What is Lazy Loading?",
+        "description": "Lazy loading loads modules only when required, improving performance by reducing the initial bundle size.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "intermediate"
+      },
+      {
+        "questionEntity": "What is View Encapsulation?",
+        "description": "View Encapsulation controls how styles are applied to components. Types include Emulated (default), Shadow DOM, and None, which define style scoping behavior.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "Solve Two Sum problem",
+        "description": "Use nested loops or optimized approaches like a hashmap to find two indices whose values sum to the target. The idea is to check pairs and return indices when the condition is satisfied.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["algorithms"],
+        "difficulty": "intermediate"
+      }
+    ]
+  },
+  "Cognizant": {
+    "role": "Angular Developer",
+    "questionEntities": [
+      {
+        "questionEntity": "What triggers Angular change detection? What strategies are available?",
+        "description": "Change detection runs when input changes, events occur, or async operations complete (HTTP, timers). Strategies: Default (checks full tree) and OnPush (checks only on input reference change or events).",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "What is View Encapsulation? Types?",
+        "description": "View Encapsulation controls how styles are scoped. Types: Emulated (default), None (global), ShadowDom (native encapsulation).",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "What are Angular Services?",
+        "description": "Services are used for business logic, API calls, and sharing data across components, promoting reusability and separation of concerns.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "Pipes vs Directives",
+        "description": "Pipes transform data in templates, while Directives modify DOM behavior (structural or attribute).",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "Have you created custom directives?",
+        "description": "Yes, custom directives modify DOM behavior using ElementRef and Renderer2, e.g., highlight directive for styling elements dynamically.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "Display only admin users in HTML",
+        "description": "Use *ngFor with *ngIf to filter users based on role without creating extra DOM using ng-container.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "How do you copy an object?",
+        "description": "Shallow copy: spread / Object.assign. Deep copy: JSON or structuredClone depending on complexity.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["javascript"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "Explain Event Loop (setTimeout output)",
+        "description": "Synchronous code runs first, async callbacks go to callback queue, executed after call stack is empty → output: a c b.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["javascript"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "ng-container vs ng-template vs ng-content",
+        "description": "ng-container: no DOM wrapper. ng-template: template reference. ng-content: content projection.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "If-Else in Angular",
+        "description": "Use *ngIf with else block via ng-template for conditional rendering.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "What is an Interface?",
+        "description": "Interface defines the structure of objects and ensures type safety in TypeScript.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["typescript"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "Why implements OnInit?",
+        "description": "Ensures TypeScript enforces lifecycle method implementation, improving type safety and readability.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "CSS Box Model",
+        "description": "Consists of content, padding, border, and margin, defining element layout.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["css"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "Flexbox",
+        "description": "One-dimensional layout system used for alignment and spacing using properties like justify-content and align-items.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["css"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "Explain Hoisting",
+        "description": "JavaScript moves declarations to top of scope. var is initialized as undefined, while let/const stay in temporal dead zone.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["javascript"],
+        "difficulty": "beginner"
+      },
+      {
+        "questionEntity": "Latest Angular features (Angular 16+)",
+        "description": "Modern Angular introduced Signals, Standalone Components, new control flow (@if, @for), improved SSR/hydration, and faster builds (Vite/esbuild).",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "intermediate"
+      },
+      {
+        "questionEntity": "What are Angular Signals?",
+        "description": "Signals are a reactive state management system that automatically tracks dependencies and updates UI when values change.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "intermediate"
+      },
+      {
+        "questionEntity": "Signals use case",
+        "description": "Used for local state management, UI updates, and performance optimization, replacing simple RxJS use cases like BehaviorSubject.",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "intermediate"
+      },
+      {
+        "questionEntity": "features of angular 21",
+        "description": "",
+        "contentType": "mixed",
+        "content": null,
+        "tags": ["angular"],
+        "difficulty": "intermediate"
+      }
+    ]
+  }
+}
