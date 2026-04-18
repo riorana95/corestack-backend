@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface QuestionRepository extends JpaRepository<QuestionEntity, Long> {
 
-    List<QuestionEntity> findByCompanyId(Long companyId);
+    List<QuestionEntity> findByCompanyEntity_Id(Long companyId);
 }

@@ -18,7 +18,7 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public List<QuestionEntity> getQuestionsByCompanyId(Long companyId) {
-        return questionRepository.findByCompanyId(companyId);
+        return questionRepository.findByCompanyEntity_Id(companyId);
     }
 
     @Override
