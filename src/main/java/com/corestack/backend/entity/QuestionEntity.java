@@ -29,6 +29,7 @@ public class QuestionEntity {
     // Tells the database to auto-generate the id value.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     // Unique id for each question row.
+    // @Column(unique = true)//won't allow duplicate entry
     private Long id;
 
     // Stores the interview question text itself.

@@ -51,6 +51,12 @@ public class QuestionController {
         return questionService.createQuestion(toQuestion(request));
     }
 
+    @PutMapping("/question/{id}")
+    public QuestionEntity updateQuestion(@PathVariable Long id, @RequestBody QuestionRequestDTO request) {
+        validateMatchingIds(id, request);
+        return questionService.updateQuestion(id, toQuestion(request));
+    }
+
     // Maps HTTP POST /question/batch to create multiple questions at once.
     @PostMapping("/question/batch")
     // Accepts a JSON array, converts each request into Question entity, then saves all.
@@ -89,5 +95,14 @@ public class QuestionController {
 
         // Return the fully prepared entity to the service layer for saving.
         return questionEntity;
+    }
+
+    private void validateMatchingIds(Long id, QuestionRequestDTO request) {
+        if (request.getId() != null && !id.equals(request.getId())) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Path id and request id must match"
+            );
+        }
     }
 }
