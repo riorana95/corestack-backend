@@ -43,7 +43,7 @@ public class SectionQuestionEntity {
     @Column(length = 4000)
     private String answer;
 
-    @Column(length = 2000)
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     private String difficulty;

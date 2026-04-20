@@ -36,7 +36,7 @@ public class QuestionEntity {
     private String question;
 
     // Maps description to a column with larger length because answers can be long.
-    @Column(length = 2000)
+    @Column(columnDefinition = "TEXT")
     // Detailed explanation or answer for the question.
     private String description;
 
