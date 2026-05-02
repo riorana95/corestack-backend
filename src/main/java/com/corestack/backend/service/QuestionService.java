@@ -1,5 +1,6 @@
 package com.corestack.backend.service;
 
+import com.corestack.backend.dto.QuestionResponseDTO;
 import com.corestack.backend.entity.QuestionEntity;
 
 import java.util.List;
@@ -13,5 +14,5 @@ public interface QuestionService {
 
     QuestionEntity updateQuestion(Long id, QuestionEntity questionEntity);
 
-    List<QuestionEntity> getAllQuestion();
+    List<QuestionResponseDTO> getAllQuestion();
 }

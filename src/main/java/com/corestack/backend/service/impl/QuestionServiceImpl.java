@@ -1,5 +1,6 @@
 package com.corestack.backend.service.impl;
 
+import com.corestack.backend.dto.QuestionResponseDTO;
 import com.corestack.backend.entity.QuestionEntity;
 import com.corestack.backend.repository.QuestionRepository;
 import com.corestack.backend.service.QuestionService;
@@ -25,8 +26,8 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<QuestionEntity> getAllQuestion() {
-        return questionRepository.findFilterQuestion();
+    public List<QuestionResponseDTO> getAllQuestion() {
+        return questionRepository.findAllSummaries();
     }
 
     @Override

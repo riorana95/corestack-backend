@@ -2,6 +2,7 @@ package com.corestack.backend.controller;
 
 // DTO used to receive request data from the client for question create APIs.
 import com.corestack.backend.dto.QuestionRequestDTO;
+import com.corestack.backend.dto.QuestionResponseDTO;
 // Entity representing the company table.
 import com.corestack.backend.entity.CompanyEntity;
 // Entity representing the questions table.
@@ -46,7 +47,7 @@ public class QuestionController {
     }
 
     @GetMapping("/allQuestion")
-    public List<QuestionEntity> getAllQuestion() {
+    public List<QuestionResponseDTO> getAllQuestion() {
         return questionService.getAllQuestion();
     }
 
