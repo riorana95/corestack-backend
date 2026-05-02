@@ -25,6 +25,11 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    public List<QuestionEntity> getAllQuestion() {
+        return questionRepository.findFilterQuestion();
+    }
+
+    @Override
     public QuestionEntity createQuestion(QuestionEntity questionEntity) {
         return questionRepository.save(questionEntity);
     }
@@ -34,8 +39,7 @@ public class QuestionServiceImpl implements QuestionService {
         QuestionEntity existingQuestion = questionRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(
                         NOT_FOUND,
-                        "Question not found with id " + id
-                ));
+                        "Question not found with id " + id));
 
         existingQuestion.setQuestion(questionEntity.getQuestion());
         existingQuestion.setDescription(questionEntity.getDescription());

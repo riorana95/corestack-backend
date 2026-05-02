@@ -32,21 +32,28 @@ public class QuestionController {
     private final CompanyRepository companyRepository;
 
     // Constructor injection lets Spring provide these dependencies automatically.
-    public QuestionController(QuestionService questionService, CompanyRepository companyRepository){
+    public QuestionController(QuestionService questionService, CompanyRepository companyRepository) {
         this.questionService = questionService;
         this.companyRepository = companyRepository;
     }
 
     // Maps HTTP GET /question?companyId=1 to this method.
     @GetMapping("/question")
-    // Reads companyId from the query string and returns all questions for that company.
-    public List<QuestionEntity> getQuestionsByCompany(@RequestParam Long companyId){
+    // Reads companyId from the query string and returns all questions for that
+    // company.
+    public List<QuestionEntity> getQuestionsByCompany(@RequestParam Long companyId) {
         return questionService.getQuestionsByCompanyId(companyId);
+    }
+
+    @GetMapping("/allQuestion")
+    public List<QuestionEntity> getAllQuestion() {
+        return questionService.getAllQuestion();
     }
 
     // Maps HTTP POST /question to create one question from JSON request body.
     @PostMapping("/question")
-    // @RequestBody tells Spring to convert incoming JSON into QuestionRequest object.
+    // @RequestBody tells Spring to convert incoming JSON into QuestionRequest
+    // object.
     public QuestionEntity createQuestion(@RequestBody QuestionRequestDTO request) {
         return questionService.createQuestion(toQuestion(request));
     }
@@ -59,11 +66,11 @@ public class QuestionController {
 
     // Maps HTTP POST /question/batch to create multiple questions at once.
     @PostMapping("/question/batch")
-    // Accepts a JSON array, converts each request into Question entity, then saves all.
+    // Accepts a JSON array, converts each request into Question entity, then saves
+    // all.
     public List<QuestionEntity> createQuestions(@RequestBody List<QuestionRequestDTO> requests) {
         return questionService.createQuestions(
-                requests.stream().map(this::toQuestion).collect(Collectors.toList())
-        );
+                requests.stream().map(this::toQuestion).collect(Collectors.toList()));
     }
 
     // Helper method used internally to convert request DTO into Question entity.
@@ -85,11 +92,11 @@ public class QuestionController {
 
         // Find the company row from database using companyId from the request.
         CompanyEntity companyEntity = companyRepository.findById(request.getCompanyId())
-                // If no matching company exists, return HTTP 404 instead of saving invalid data.
+                // If no matching company exists, return HTTP 404 instead of saving invalid
+                // data.
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND,
-                        "Company not found with id " + request.getCompanyId()
-                ));
+                        "Company not found with id " + request.getCompanyId()));
         // Link this question to the found company.
         questionEntity.setCompanyEntity(companyEntity);
 
@@ -101,8 +108,7 @@ public class QuestionController {
         if (request.getId() != null && !id.equals(request.getId())) {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST,
-                    "Path id and request id must match"
-            );
+                    "Path id and request id must match");
         }
     }
 }
