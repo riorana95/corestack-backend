@@ -1,13 +1,17 @@
 package com.corestack.backend.service.impl;
 
 import com.corestack.backend.dto.QuestionResponseDTO;
+import com.corestack.backend.dto.QuestionSummaryRowDTO;
 import com.corestack.backend.entity.QuestionEntity;
 import com.corestack.backend.repository.QuestionRepository;
 import com.corestack.backend.service.QuestionService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
@@ -27,7 +31,27 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public List<QuestionResponseDTO> getAllQuestion() {
-        return questionRepository.findAllSummaries();
+        Map<Long, QuestionResponseDTO> questionsById = new LinkedHashMap<>();
+
+        for (QuestionSummaryRowDTO row : questionRepository.findAllSummaryRows()) {
+            QuestionResponseDTO existing = questionsById.get(row.id());
+            if (existing == null) {
+                existing = new QuestionResponseDTO(
+                        row.id(),
+                        row.question(),
+                        row.companyName(),
+                        row.companyRole(),
+                        new ArrayList<>()
+                );
+                questionsById.put(row.id(), existing);
+            }
+
+            if (row.tag() != null) {
+                existing.tags().add(row.tag());
+            }
+        }
+
+        return List.copyOf(questionsById.values());
     }
 
     @Override

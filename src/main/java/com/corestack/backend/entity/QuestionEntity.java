@@ -52,6 +52,8 @@ public class QuestionEntity {
     // Stores a list of simple String values in a separate table instead of a new entity.
     // EAGER is used so tags are loaded immediately with Question and JSON serialization does not fail.
     @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "question_tags", joinColumns = @JoinColumn(name = "question_id"))
+    @Column(name = "tags")
     // List of tags like "project", "angular" or "backend".
     private List<String> tags;
 

@@ -1,12 +1,10 @@
 package com.corestack.backend.dto;
 
-import java.util.List;
-
-public record QuestionResponseDTO(
+public record QuestionSummaryRowDTO(
         Long id,
         String question,
         String companyName,
         String companyRole,
-        List<String> tags
+        String tag
 ) {
 }
