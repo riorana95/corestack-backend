@@ -1,27 +1,30 @@
 package com.corestack.backend.controller;
 
 // DTO used to receive request data from the client for question create APIs.
+
+import com.corestack.backend.dto.PageResponseDTO;
 import com.corestack.backend.dto.QuestionRequestDTO;
 import com.corestack.backend.dto.QuestionResponseDTO;
-// Entity representing the company table.
 import com.corestack.backend.entity.CompanyEntity;
-// Entity representing the questions table.
 import com.corestack.backend.entity.QuestionEntity;
-// Repository used here to validate and load an existing company by id.
 import com.corestack.backend.repository.CompanyRepository;
-// Service layer that handles question-related database operations.
 import com.corestack.backend.service.QuestionService;
-// Used to return a 404 HTTP status if the company id does not exist.
 import org.springframework.http.HttpStatus;
-// Used with HttpStatus to throw proper REST errors.
-import org.springframework.web.server.ResponseStatusException;
-// Spring annotations used to map HTTP requests to methods.
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
-// List is used for returning multiple questions.
 import java.util.List;
-// Collectors is used to convert a stream into a List for batch insert.
 import java.util.stream.Collectors;
+
+// Entity representing the company table.
+// Entity representing the questions table.
+// Repository used here to validate and load an existing company by id.
+// Service layer that handles question-related database operations.
+// Used to return a 404 HTTP status if the company id does not exist.
+// Used with HttpStatus to throw proper REST errors.
+// Spring annotations used to map HTTP requests to methods.
+// List is used for returning multiple questions.
+// Collectors is used to convert a stream into a List for batch insert.
 
 // Marks this class as a REST controller so methods return JSON responses directly.
 @RestController
@@ -38,17 +41,14 @@ public class QuestionController {
         this.companyRepository = companyRepository;
     }
 
-    // Maps HTTP GET /question?companyId=1 to this method.
-    @GetMapping("/question")
-    // Reads companyId from the query string and returns all questions for that
-    // company.
-    public List<QuestionEntity> getQuestionsByCompany(@RequestParam Long companyId) {
-        return questionService.getQuestionsByCompanyId(companyId);
-    }
-
-    @GetMapping("/allQuestion")
-    public List<QuestionResponseDTO> getAllQuestion() {
-        return questionService.getAllQuestion();
+    @GetMapping("/questions")
+    public PageResponseDTO<QuestionResponseDTO> getQuestion(
+            @RequestParam(required = false) String companyName,
+            @RequestParam(required = false) String tag,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size
+    ){
+        return questionService.getFilteredQuestions(companyName, tag, page, size);
     }
 
     // Maps HTTP POST /question to create one question from JSON request body.

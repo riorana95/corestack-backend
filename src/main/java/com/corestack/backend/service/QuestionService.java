@@ -1,5 +1,6 @@
 package com.corestack.backend.service;
 
+import com.corestack.backend.dto.PageResponseDTO;
 import com.corestack.backend.dto.QuestionResponseDTO;
 import com.corestack.backend.entity.QuestionEntity;
 
@@ -14,5 +15,5 @@ public interface QuestionService {
 
     QuestionEntity updateQuestion(Long id, QuestionEntity questionEntity);
 
-    List<QuestionResponseDTO> getAllQuestion();
+    PageResponseDTO<QuestionResponseDTO> getFilteredQuestions(String companyName, String tag, int page, int size);
 }

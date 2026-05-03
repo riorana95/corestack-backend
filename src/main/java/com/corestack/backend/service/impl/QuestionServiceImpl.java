@@ -1,17 +1,16 @@
 package com.corestack.backend.service.impl;
 
+import com.corestack.backend.dto.PageResponseDTO;
 import com.corestack.backend.dto.QuestionResponseDTO;
-import com.corestack.backend.dto.QuestionSummaryRowDTO;
 import com.corestack.backend.entity.QuestionEntity;
 import com.corestack.backend.repository.QuestionRepository;
 import com.corestack.backend.service.QuestionService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
@@ -30,28 +29,35 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<QuestionResponseDTO> getAllQuestion() {
-        Map<Long, QuestionResponseDTO> questionsById = new LinkedHashMap<>();
+    public PageResponseDTO<QuestionResponseDTO> getFilteredQuestions(
+            String companyName,
+            String tag,
+            int page,
+            int size
+    ) {
+        Page<QuestionEntity> result = questionRepository.findFilteredQuestions(
+                companyName,
+                tag,
+                PageRequest.of(page, size)
+        );
 
-        for (QuestionSummaryRowDTO row : questionRepository.findAllSummaryRows()) {
-            QuestionResponseDTO existing = questionsById.get(row.id());
-            if (existing == null) {
-                existing = new QuestionResponseDTO(
-                        row.id(),
-                        row.question(),
-                        row.companyName(),
-                        row.companyRole(),
-                        new ArrayList<>()
-                );
-                questionsById.put(row.id(), existing);
-            }
+        List<QuestionResponseDTO> data = result.getContent().stream()
+                .map(q -> new QuestionResponseDTO(
+                        q.getId(),
+                        q.getQuestion(),
+                        q.getCompanyEntity().getName(),
+                        q.getCompanyEntity().getRole(),
+                        q.getTags()
+                ))
+                .toList();
 
-            if (row.tag() != null) {
-                existing.tags().add(row.tag());
-            }
-        }
-
-        return List.copyOf(questionsById.values());
+        return new PageResponseDTO<>(
+                data,
+                result.getNumber(),
+                result.getSize(),
+                result.getTotalElements(),
+                result.getTotalPages()
+        );
     }
 
     @Override
