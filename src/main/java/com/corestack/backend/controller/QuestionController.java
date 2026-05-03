@@ -51,6 +51,13 @@ public class QuestionController {
         return questionService.getFilteredQuestions(companyName, tag, page, size);
     }
 
+    // Maps HTTP GET /question?companyId=1 to this method.
+    @GetMapping("/questionBy")
+    // Reads companyId from the query string and returns all questions for that company.
+    public List<QuestionEntity> getQuestionsByCompany(@RequestParam Long companyId){
+        return questionService.getQuestionsByCompanyId(companyId);
+    }
+
     // Maps HTTP POST /question to create one question from JSON request body.
     @PostMapping("/question")
     // @RequestBody tells Spring to convert incoming JSON into QuestionRequest
