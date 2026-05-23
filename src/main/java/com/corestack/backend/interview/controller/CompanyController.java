@@ -1,8 +1,8 @@
-package com.corestack.backend.controller;
+package com.corestack.backend.interview.controller;
 
-import com.corestack.backend.dto.CompanyRequestDTO;
-import com.corestack.backend.entity.CompanyEntity;
-import com.corestack.backend.service.CompanyService;
+import com.corestack.backend.interview.dto.CompanyRequestDTO;
+import com.corestack.backend.interview.entity.CompanyEntity;
+import com.corestack.backend.interview.service.CompanyService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

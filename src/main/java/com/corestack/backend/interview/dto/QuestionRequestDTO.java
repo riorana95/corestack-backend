@@ -1,4 +1,4 @@
-package com.corestack.backend.dto;
+package com.corestack.backend.interview.dto;
 
 import lombok.Data;
 

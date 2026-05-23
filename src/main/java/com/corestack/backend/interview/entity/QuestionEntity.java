@@ -1,4 +1,4 @@
-package com.corestack.backend.entity;
+package com.corestack.backend.interview.entity;
 
 // JPA annotations used to map this Java class to database tables/columns.
 import jakarta.persistence.*;

@@ -1,10 +1,10 @@
-package com.corestack.backend.service.impl;
+package com.corestack.backend.interview.service.impl;
 
-import com.corestack.backend.dto.PageResponseDTO;
-import com.corestack.backend.dto.QuestionResponseDTO;
-import com.corestack.backend.entity.QuestionEntity;
-import com.corestack.backend.repository.QuestionRepository;
-import com.corestack.backend.service.QuestionService;
+import com.corestack.backend.interview.dto.PageResponseDTO;
+import com.corestack.backend.interview.dto.QuestionResponseDTO;
+import com.corestack.backend.interview.entity.QuestionEntity;
+import com.corestack.backend.interview.repository.QuestionRepository;
+import com.corestack.backend.interview.service.QuestionService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -45,6 +45,7 @@ public class QuestionServiceImpl implements QuestionService {
                 .map(q -> new QuestionResponseDTO(
                         q.getId(),
                         q.getQuestion(),
+                        q.getDescription(),
                         q.getCompanyEntity().getName(),
                         q.getCompanyEntity().getRole(),
                         q.getTags()

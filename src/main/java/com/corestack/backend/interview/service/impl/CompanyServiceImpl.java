@@ -1,8 +1,8 @@
-package com.corestack.backend.service.impl;
+package com.corestack.backend.interview.service.impl;
 
-import com.corestack.backend.entity.CompanyEntity;
-import com.corestack.backend.repository.CompanyRepository;
-import com.corestack.backend.service.CompanyService;
+import com.corestack.backend.interview.entity.CompanyEntity;
+import com.corestack.backend.interview.repository.CompanyRepository;
+import com.corestack.backend.interview.service.CompanyService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

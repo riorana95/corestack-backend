@@ -1,5 +1,5 @@
-package com.corestack.backend.repository;
-import com.corestack.backend.entity.QuestionEntity;
+package com.corestack.backend.interview.repository;
+import com.corestack.backend.interview.entity.QuestionEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

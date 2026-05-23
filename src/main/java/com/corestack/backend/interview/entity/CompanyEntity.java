@@ -1,4 +1,4 @@
-package com.corestack.backend.entity;
+package com.corestack.backend.interview.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

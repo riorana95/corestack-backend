@@ -1,8 +1,8 @@
-package com.corestack.backend.service;
+package com.corestack.backend.interview.service;
 
-import com.corestack.backend.dto.PageResponseDTO;
-import com.corestack.backend.dto.QuestionResponseDTO;
-import com.corestack.backend.entity.QuestionEntity;
+import com.corestack.backend.interview.dto.PageResponseDTO;
+import com.corestack.backend.interview.dto.QuestionResponseDTO;
+import com.corestack.backend.interview.entity.QuestionEntity;
 
 import java.util.List;
 

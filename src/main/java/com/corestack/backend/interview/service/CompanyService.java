@@ -1,6 +1,6 @@
-package com.corestack.backend.service;
+package com.corestack.backend.interview.service;
 
-import com.corestack.backend.entity.CompanyEntity;
+import com.corestack.backend.interview.entity.CompanyEntity;
 
 import java.util.List;
 

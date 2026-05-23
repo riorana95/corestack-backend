@@ -1,14 +1,14 @@
-package com.corestack.backend.controller;
+package com.corestack.backend.interview.controller;
 
 // DTO used to receive request data from the client for question create APIs.
 
-import com.corestack.backend.dto.PageResponseDTO;
-import com.corestack.backend.dto.QuestionRequestDTO;
-import com.corestack.backend.dto.QuestionResponseDTO;
-import com.corestack.backend.entity.CompanyEntity;
-import com.corestack.backend.entity.QuestionEntity;
-import com.corestack.backend.repository.CompanyRepository;
-import com.corestack.backend.service.QuestionService;
+import com.corestack.backend.interview.dto.PageResponseDTO;
+import com.corestack.backend.interview.dto.QuestionRequestDTO;
+import com.corestack.backend.interview.dto.QuestionResponseDTO;
+import com.corestack.backend.interview.entity.CompanyEntity;
+import com.corestack.backend.interview.entity.QuestionEntity;
+import com.corestack.backend.interview.repository.CompanyRepository;
+import com.corestack.backend.interview.service.QuestionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
