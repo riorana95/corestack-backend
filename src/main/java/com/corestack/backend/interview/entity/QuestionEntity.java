@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 // JsonIgnore prevents Jackson from serializing this field during JSON conversion.
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.EqualsAndHashCode;
 
 // List is used because one question can have multiple tags.
 import java.util.List;
@@ -27,6 +28,9 @@ import java.util.HashSet;
 @NoArgsConstructor
 // Generates a constructor with all fields in order.
 @AllArgsConstructor
+// Exclude companies collection from equals/hashCode to prevent lazy
+// initialization issues
+@EqualsAndHashCode(exclude = "companies")
 public class QuestionEntity {
 
     // Marks this field as the primary key of the questions table.

@@ -2,6 +2,7 @@ package com.corestack.backend.interview.service.impl;
 
 import com.corestack.backend.interview.dto.PageResponseDTO;
 import com.corestack.backend.interview.dto.QuestionResponseDTO;
+import com.corestack.backend.interview.dto.CompanyDTO;
 import com.corestack.backend.interview.entity.QuestionEntity;
 import com.corestack.backend.interview.repository.QuestionRepository;
 import com.corestack.backend.interview.service.QuestionService;
@@ -48,8 +49,9 @@ public class QuestionServiceImpl implements QuestionService {
                         q.getId(),
                         q.getQuestion(),
                         q.getDescription(),
-                        q.getCompanies().stream().map(c -> c.getName()).collect(Collectors.joining(", ")),
-                        q.getCompanies().stream().map(c -> c.getRole()).collect(Collectors.joining(", ")),
+                        q.getCompanies().stream()
+                                .map(c -> new CompanyDTO(c.getId(), c.getName(), c.getRole()))
+                                .toList(),
                         q.getTags()))
                 .toList();
 
