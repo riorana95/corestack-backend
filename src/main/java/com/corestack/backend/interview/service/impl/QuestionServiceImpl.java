@@ -8,9 +8,11 @@ import com.corestack.backend.interview.service.QuestionService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
@@ -24,32 +26,31 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<QuestionEntity> getQuestionsByCompanyId(Long companyId) {
-        return questionRepository.findByCompanyEntity_Id(companyId);
+        return questionRepository.findByCompanies_Id(companyId);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public PageResponseDTO<QuestionResponseDTO> getFilteredQuestions(
             String companyName,
             String tag,
             int page,
-            int size
-    ) {
+            int size) {
         Page<QuestionEntity> result = questionRepository.findFilteredQuestions(
                 companyName,
                 tag,
-                PageRequest.of(page, size)
-        );
+                PageRequest.of(page, size));
 
         List<QuestionResponseDTO> data = result.getContent().stream()
                 .map(q -> new QuestionResponseDTO(
                         q.getId(),
                         q.getQuestion(),
                         q.getDescription(),
-                        q.getCompanyEntity().getName(),
-                        q.getCompanyEntity().getRole(),
-                        q.getTags()
-                ))
+                        q.getCompanies().stream().map(c -> c.getName()).collect(Collectors.joining(", ")),
+                        q.getCompanies().stream().map(c -> c.getRole()).collect(Collectors.joining(", ")),
+                        q.getTags()))
                 .toList();
 
         return new PageResponseDTO<>(
@@ -57,8 +58,7 @@ public class QuestionServiceImpl implements QuestionService {
                 result.getNumber(),
                 result.getSize(),
                 result.getTotalElements(),
-                result.getTotalPages()
-        );
+                result.getTotalPages());
     }
 
     @Override
@@ -79,7 +79,7 @@ public class QuestionServiceImpl implements QuestionService {
         existingQuestion.setContentType(questionEntity.getContentType());
         existingQuestion.setContent(questionEntity.getContent());
         existingQuestion.setTags(questionEntity.getTags());
-        existingQuestion.setCompanyEntity(questionEntity.getCompanyEntity());
+        existingQuestion.getCompanies().addAll(questionEntity.getCompanies());
 
         return questionRepository.save(existingQuestion);
     }

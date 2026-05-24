@@ -46,15 +46,15 @@ public class QuestionController {
             @RequestParam(required = false) String companyName,
             @RequestParam(required = false) String tag,
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "5") int size
-    ){
+            @RequestParam(defaultValue = "5") int size) {
         return questionService.getFilteredQuestions(companyName, tag, page, size);
     }
 
     // Maps HTTP GET /question?companyId=1 to this method.
     @GetMapping("/questionBy")
-    // Reads companyId from the query string and returns all questions for that company.
-    public List<QuestionEntity> getQuestionsByCompany(@RequestParam Long companyId){
+    // Reads companyId from the query string and returns all questions for that
+    // company.
+    public List<QuestionEntity> getQuestionsByCompany(@RequestParam Long companyId) {
         return questionService.getQuestionsByCompanyId(companyId);
     }
 
@@ -105,8 +105,8 @@ public class QuestionController {
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND,
                         "Company not found with id " + request.getCompanyId()));
-        // Link this question to the found company.
-        questionEntity.setCompanyEntity(companyEntity);
+        // Link this question to the found company by adding it to the companies set.
+        questionEntity.getCompanies().add(companyEntity);
 
         // Return the fully prepared entity to the service layer for saving.
         return questionEntity;

@@ -1,12 +1,16 @@
 package com.corestack.backend.interview.entity;
 
+import java.util.Set;
+import java.util.HashSet;
+
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @jakarta.persistence.Entity
-@Table(name="companies")
+@Table(name = "companies")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,4 +21,11 @@ public class CompanyEntity {
 
     private String name;
     private String role;
+
+    // Reverse side of many-to-many relationship: one company can have many
+    // questions.
+    @ManyToMany(mappedBy = "companies")
+    @JsonIgnore
+    // The questions that belong to this company.
+    private Set<QuestionEntity> questions = new HashSet<>();
 }

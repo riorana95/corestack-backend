@@ -8,14 +8,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 // Lombok generates a no-argument constructor required by JPA.
 import lombok.NoArgsConstructor;
+// JsonIgnore prevents Jackson from serializing this field during JSON conversion.
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 // List is used because one question can have multiple tags.
 import java.util.List;
+// Set and HashSet used for many-to-many relationship with companies.
+import java.util.Set;
+import java.util.HashSet;
 
 // Marks this class as a JPA entity so Hibernate maps it to a database table.
 @jakarta.persistence.Entity
 // Tells Hibernate to use the table name "questions" in the database.
-@Table(name="questions")
+@Table(name = "questions")
 // Generates boilerplate methods like getters/setters for all fields.
 @Data
 // Generates an empty constructor.
@@ -49,18 +54,18 @@ public class QuestionEntity {
     // Stores extra content if needed; can be null.
     private String content;
 
-    // Stores a list of simple String values in a separate table instead of a new entity.
-    // EAGER is used so tags are loaded immediately with Question and JSON serialization does not fail.
+    // Stores a list of simple String values in a separate table instead of a new
+    // entity.
+    // EAGER is used so tags are loaded immediately with Question and JSON
+    // serialization does not fail.
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "question_tags", joinColumns = @JoinColumn(name = "question_id"))
     @Column(name = "tags")
     // List of tags like "project", "angular" or "backend".
     private List<String> tags;
 
-    // Many questions can belong to one company, so this is a many-to-one relationship.
-    @ManyToOne
-    // Uses company_id as the foreign key column in the questions table.
-    @JoinColumn(name = "company_id")
-    // The company to which this question belongs.
-    private CompanyEntity companyEntity;
+    @ManyToMany
+    @JoinTable(name = "question_companies", joinColumns = @JoinColumn(name = "question_id"), inverseJoinColumns = @JoinColumn(name = "company_id"))
+    @JsonIgnore
+    private Set<CompanyEntity> companies = new HashSet<>();
 }
