@@ -11,10 +11,10 @@ import java.util.stream.Collectors;
 @RestController
 
 public class CompanyController {
-
+    //
     private final CompanyService companyService;
 
-    public CompanyController(CompanyService companyService){
+    public CompanyController(CompanyService companyService) {
         this.companyService = companyService;
     }
 
@@ -31,8 +31,7 @@ public class CompanyController {
     @PostMapping("/company/batch")
     public List<CompanyEntity> createCompanies(@RequestBody List<CompanyRequestDTO> requests) {
         return companyService.createCompanies(
-                requests.stream().map(this::toCompany).collect(Collectors.toList())
-        );
+                requests.stream().map(this::toCompany).collect(Collectors.toList()));
     }
 
     private CompanyEntity toCompany(CompanyRequestDTO request) {
