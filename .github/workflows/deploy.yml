@@ -1,4 +1,8 @@
-name: Deploy Spring Boot to AWS EC2
+name: Deploy Backend V2
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: true
 
 on:
   push:
