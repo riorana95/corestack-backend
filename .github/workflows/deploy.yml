@@ -1,4 +1,8 @@
-name: Deploy Spring Boot to AWS EC2
+name: Deploy Backend V2
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: true
 
 on:
   push:
@@ -21,17 +25,18 @@ jobs:
 
       - name: Deploy to EC2
         run: |
-          ssh -o StrictHostKeyChecking=no \
+          ssh -T -o StrictHostKeyChecking=no \
               -o ServerAliveInterval=60 \
               -o ServerAliveCountMax=10 \
               ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
           
           cd /home/ec2-user/corestack-backend
 
-          git pull origin main
+          git fetch origin main
+          git reset --hard origin/main
 
           mvn clean package -DskipTests
 
-          sudo systemctl restart corestack
+          sudo systemctl restart corestack > /dev/null 2>&1
 
           EOF
