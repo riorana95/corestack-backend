@@ -25,17 +25,21 @@ jobs:
 
       - name: Deploy to EC2
         run: |
-          ssh -o StrictHostKeyChecking=no \
+          # Added -T to disable pseudo-terminal allocation (prevents hanging on EOF streams)
+          ssh -T -o StrictHostKeyChecking=no \
               -o ServerAliveInterval=60 \
               -o ServerAliveCountMax=10 \
               ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
           
           cd /home/ec2-user/corestack-backend
 
-          git pull origin main
+          # Force pull to overwrite local file edits if they happen on the server
+          git fetch origin main
+          git reset --hard origin/main
 
           mvn clean package -DskipTests
 
-          sudo systemctl restart corestack
+          # Fully redirect outputs to decouple the systemd restart trigger from the SSH process
+          sudo systemctl restart corestack > /dev/null 2>&1
 
           EOF
