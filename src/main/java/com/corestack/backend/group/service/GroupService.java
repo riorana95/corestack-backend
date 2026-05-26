@@ -210,7 +210,7 @@ public class GroupService {
 
     private String resolveCurrency(String currencyCode) {
         if (currencyCode == null || currencyCode.isBlank()) {
-            return "USD";
+            return "INR";
         }
         return currencyCode.trim().toUpperCase();
     }

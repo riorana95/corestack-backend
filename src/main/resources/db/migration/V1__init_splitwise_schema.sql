@@ -28,7 +28,7 @@ CREATE TABLE sw_groups (
     id            UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name          VARCHAR(150) NOT NULL,
     description   VARCHAR(500),
-    currency_code CHAR(3) NOT NULL DEFAULT 'USD',
+    currency_code CHAR(3) NOT NULL DEFAULT 'INR',
     created_by    UUID NOT NULL REFERENCES sw_users (id),
     created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()

@@ -27,7 +27,7 @@ public class GroupEntity extends BaseAuditEntity {
     private String description;
 
     @Column(name = "currency_code", nullable = false, length = 3)
-    private String currencyCode = "USD";
+    private String currencyCode = "INR";
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "created_by", nullable = false)
