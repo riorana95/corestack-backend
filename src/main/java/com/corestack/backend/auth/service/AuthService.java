@@ -1,6 +1,8 @@
 package com.corestack.backend.auth.service;
 
 import com.corestack.backend.auth.dto.AuthResponse;
+import com.corestack.backend.auth.dto.GoogleLoginRequest;
+import com.corestack.backend.auth.dto.GoogleTokenInfoResponse;
 import com.corestack.backend.auth.dto.LoginRequest;
 import com.corestack.backend.auth.dto.RefreshTokenRequest;
 import com.corestack.backend.auth.dto.RegisterRequest;
@@ -14,6 +16,7 @@ import com.corestack.backend.auth.repository.UserAuthProviderRepository;
 import com.corestack.backend.auth.repository.UserRepository;
 import com.corestack.backend.common.exception.BusinessException;
 import com.corestack.backend.common.exception.ErrorCode;
+import com.corestack.backend.config.GoogleOAuthProperties;
 import com.corestack.backend.config.JwtProperties;
 import com.corestack.backend.security.UserPrincipal;
 import com.corestack.backend.security.jwt.JwtTokenProvider;
@@ -23,29 +26,41 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
+import org.springframework.web.client.RestClient;
+
+import java.util.Objects;
 
 @Service
 public class AuthService {
+
+    private static final String GOOGLE_TOKEN_INFO_URL =
+            "https://oauth2.googleapis.com/tokeninfo?id_token={credential}";
 
     private final UserRepository userRepository;
     private final UserAuthProviderRepository userAuthProviderRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
     private final JwtProperties jwtProperties;
+    private final GoogleOAuthProperties googleOAuthProperties;
     private final AuthMapper authMapper;
+    private final RestClient restClient;
 
     public AuthService(UserRepository userRepository,
                        UserAuthProviderRepository userAuthProviderRepository,
                        PasswordEncoder passwordEncoder,
                        JwtTokenProvider jwtTokenProvider,
                        JwtProperties jwtProperties,
+                       GoogleOAuthProperties googleOAuthProperties,
                        AuthMapper authMapper) {
         this.userRepository = userRepository;
         this.userAuthProviderRepository = userAuthProviderRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtTokenProvider = jwtTokenProvider;
         this.jwtProperties = jwtProperties;
+        this.googleOAuthProperties = googleOAuthProperties;
         this.authMapper = authMapper;
+        this.restClient = RestClient.create();
     }
 
     @Transactional
@@ -83,12 +98,33 @@ public class AuthService {
             throw new BadCredentialsException("Invalid credentials");
         }
 
-        if (user.getStatus() != UserStatus.ACTIVE) {
-            throw new BusinessException(
-                    ErrorCode.FORBIDDEN,
-                    "Account is disabled",
-                    HttpStatus.FORBIDDEN);
+        ensureActive(user);
+
+        return buildAuthResponse(user);
+    }
+
+    @Transactional
+    public AuthResponse googleLogin(GoogleLoginRequest request) {
+        GoogleTokenInfoResponse tokenInfo = verifyGoogleCredential(request.credential());
+
+        UserAuthProviderEntity existingProvider = userAuthProviderRepository
+                .findByProviderAndProviderUserId(AuthProviderType.GOOGLE, tokenInfo.sub())
+                .orElse(null);
+
+        if (existingProvider != null) {
+            ensureActive(existingProvider.getUser());
+            return buildAuthResponse(existingProvider.getUser());
         }
+
+        UserEntity user = userRepository.findByEmailIgnoreCase(tokenInfo.email())
+                .orElseGet(() -> createGoogleUser(tokenInfo));
+        ensureActive(user);
+
+        UserAuthProviderEntity provider = new UserAuthProviderEntity();
+        provider.setUser(user);
+        provider.setProvider(AuthProviderType.GOOGLE);
+        provider.setProviderUserId(tokenInfo.sub());
+        userAuthProviderRepository.save(provider);
 
         return buildAuthResponse(user);
     }
@@ -123,6 +159,59 @@ public class AuthService {
                         "User not found",
                         HttpStatus.NOT_FOUND));
         return authMapper.toUserResponse(user);
+    }
+
+    private GoogleTokenInfoResponse verifyGoogleCredential(String credential) {
+        if (!StringUtils.hasText(googleOAuthProperties.clientId())) {
+            throw new BusinessException(
+                    ErrorCode.INTERNAL_ERROR,
+                    "Google OAuth client id is not configured",
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        GoogleTokenInfoResponse tokenInfo = restClient
+                .get()
+                .uri(GOOGLE_TOKEN_INFO_URL, credential)
+                .retrieve()
+                .body(GoogleTokenInfoResponse.class);
+
+        if (tokenInfo == null
+                || !Objects.equals(tokenInfo.aud(), googleOAuthProperties.clientId())
+                || !Boolean.TRUE.equals(tokenInfo.emailVerified())
+                || !StringUtils.hasText(tokenInfo.sub())
+                || !StringUtils.hasText(tokenInfo.email())) {
+            throw new BusinessException(
+                    ErrorCode.UNAUTHORIZED,
+                    "Invalid Google credential",
+                    HttpStatus.UNAUTHORIZED);
+        }
+
+        return tokenInfo;
+    }
+
+    private UserEntity createGoogleUser(GoogleTokenInfoResponse tokenInfo) {
+        UserEntity user = new UserEntity();
+        user.setEmail(tokenInfo.email().trim().toLowerCase());
+        user.setDisplayName(resolveGoogleDisplayName(tokenInfo));
+        user.setPasswordHash(null);
+        user.setStatus(UserStatus.ACTIVE);
+        return userRepository.save(user);
+    }
+
+    private String resolveGoogleDisplayName(GoogleTokenInfoResponse tokenInfo) {
+        if (StringUtils.hasText(tokenInfo.name())) {
+            return tokenInfo.name().trim();
+        }
+        return tokenInfo.email().split("@")[0];
+    }
+
+    private void ensureActive(UserEntity user) {
+        if (user.getStatus() != UserStatus.ACTIVE) {
+            throw new BusinessException(
+                    ErrorCode.FORBIDDEN,
+                    "Account is disabled",
+                    HttpStatus.FORBIDDEN);
+        }
     }
 
     private AuthResponse buildAuthResponse(UserEntity user) {

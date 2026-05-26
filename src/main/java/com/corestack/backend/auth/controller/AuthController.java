@@ -1,6 +1,7 @@
 package com.corestack.backend.auth.controller;
 
 import com.corestack.backend.auth.dto.AuthResponse;
+import com.corestack.backend.auth.dto.GoogleLoginRequest;
 import com.corestack.backend.auth.dto.LoginRequest;
 import com.corestack.backend.auth.dto.RefreshTokenRequest;
 import com.corestack.backend.auth.dto.RegisterRequest;
@@ -34,6 +35,11 @@ public class AuthController {
     @PostMapping("/login")
     public AuthResponse login(@Valid @RequestBody LoginRequest request) {
         return authService.login(request);
+    }
+
+    @PostMapping("/google")
+    public AuthResponse googleLogin(@Valid @RequestBody GoogleLoginRequest request) {
+        return authService.googleLogin(request);
     }
 
     @PostMapping("/refresh")
