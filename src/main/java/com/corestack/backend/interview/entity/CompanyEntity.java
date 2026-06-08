@@ -1,5 +1,6 @@
 package com.corestack.backend.interview.entity;
 
+import java.time.LocalDate;
 import java.util.Set;
 import java.util.HashSet;
 
@@ -23,6 +24,9 @@ public class CompanyEntity {
 
     private String name;
     private String role;
+
+    private String round;
+    private LocalDate date;
 
     // Reverse side of many-to-many relationship: one company can have many
     // questions.

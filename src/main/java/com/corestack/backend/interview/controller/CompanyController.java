@@ -23,7 +23,7 @@ public class CompanyController {
         return companyService.getAllCompanies();
     }
 
-    @PostMapping("/company")
+    @PostMapping("/company/add")
     public CompanyEntity createCompany(@RequestBody CompanyRequestDTO request) {
         return companyService.createCompany(toCompany(request));
     }
@@ -38,6 +38,8 @@ public class CompanyController {
         CompanyEntity companyEntity = new CompanyEntity();
         companyEntity.setName(request.getName());
         companyEntity.setRole(request.getRole());
+        companyEntity.setRound(request.getRound());
+        companyEntity.setDate(request.getDate());
         return companyEntity;
     }
 }
