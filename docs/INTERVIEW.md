@@ -5,7 +5,7 @@ Backend module for storing and serving interview preparation content. It manages
 ## Location
 
 ```text
-corestack-backend/src/main/java/com/corestack/backend/interview/
+xora-backend/src/main/java/com/xora/backend/interview/
 ```
 
 ## Package Structure

@@ -1,0 +1,26 @@
+# ===========================================================================
+#  Xora Backend — Local Development Example
+#  Copy to `application-local.properties` (gitignored) and fill in your values.
+#  Run with:  ./mvnw spring-boot:run -Dspring-boot.run.profiles=local
+# ===========================================================================
+
+# Database
+XORA_DB_URL=jdbc:postgresql://localhost:5432/xora
+XORA_DB_USERNAME=xora
+XORA_DB_PASSWORD=xora
+
+# Override prod defaults for a smoother local dev loop
+DDL_AUTO=update
+SHOW_SQL=true
+
+# JWT secret — generate with:  openssl rand -base64 48
+XORA_JWT_SECRET=replace-me-with-a-long-random-secret-at-least-32-characters-long
+
+# Google OAuth client id (optional)
+GOOGLE_CLIENT_ID=
+
+# CORS
+XORA_CORS_ORIGINS=http://localhost:4200,http://localhost:3000
+
+# Server port
+PORT=8080

@@ -8,8 +8,8 @@
 		<version>4.0.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.corestack</groupId>
-	<artifactId>corestack-backend</artifactId>
+	<groupId>com.xora</groupId>
+	<artifactId>xora-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name/>
 	<description/>
@@ -27,6 +27,8 @@
 		<url/>
 	</scm>
 	<properties>
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
 		<java.version>21</java.version>
 	</properties>
 	<dependencies>
